@@ -1,0 +1,30 @@
+[user]
+    email = mack@mackstump.com
+    name = Mack Stump
+[alias]
+    s  = status
+    lg = log --pretty=oneline --abbrev-commit --graph --all --decorate
+[color]
+    ui = true
+[core]
+    editor = nvim
+    pager = delta
+    excludesFile = ~/.gitignore
+[push]
+    default = simple
+[pull]
+    ff = only
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    features = decorations
+    line-numbers = true
+    whitespace-error-style = 22 reverse
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default

@@ -1,0 +1,90 @@
+function journal() {
+    local year_month="$(date +%Y)/$(date +%m)"
+    [[ -d "$HOME/documents/journal/$year_month/" ]] || mkdir -p "$HOME/documents/journal/$year_month/"
+    ${EDITOR:-vi} "$HOME/documents/journal/$year_month/$(date +%d)"
+}
+
+function compress() {
+    setopt ksh_glob
+
+    function usage() {
+        echo "usage: compress <path>"
+    }
+
+    if [[ $# -ne 1 ]]; then
+        usage
+        return 1
+    fi
+
+    local file=${1/%+(\/)}
+    if [[ -f $file ]]; then
+        xz --threads=0 --keep "$file" > "${file##*/}.xz"
+    elif [[ -d $file ]]; then
+        tar -cf - "$file" | xz --threads=0 > "${file##*/}.tar.xz"
+    else
+        usage
+        return 1
+    fi
+
+    unsetopt ksh_glob
+}
+
+function compress_video() {
+    function usage() {
+        echo "usage: compress_video <input_file> <output_file>"
+    }
+
+    if [[ $# -ne 2 ]]; then
+        usage
+        return 1
+    fi
+
+    ffmpeg -i "${1}" -vcodec libx265 -crf 28 "${2}"
+}
+
+function tm() {
+    if [[ $# -gt 0 ]]; then
+        command tmux -2 new -s "$1" -n ''
+    else
+        command tmux -2 new -n ''
+    fi
+}
+
+if hash xdg-open 2>/dev/null; then
+    function o open () {
+        if [[ -d "$1" ]] && hash nautilus 2>/dev/null; then
+            nautilus "$1"
+        else
+            xdg-open "$1"
+        fi
+    }
+fi
+
+function search() {
+    selected_line=$(sk --ansi -i -c 'rg --line-number --color=always "{}"')
+    split_lines=("${(@s/:/)selected_line}")
+    if [[ ${#split_lines} > 1 ]]; then
+        vim +${split_lines[2]} "${split_lines[1]}"
+    fi
+}
+
+function searchi() {
+    selected_line=$(sk --ansi -i -c 'rg -i --line-number --color=always "{}"')
+    split_lines=("${(@s/:/)selected_line}")
+    if [[ ${#split_lines} > 1 ]]; then
+        vim +${split_lines[2]} "${split_lines[1]}"
+    fi
+}
+
+function whatprovides() {
+    if (( $# != 1 )); then
+        echo "Usage: $0 <file>"
+        return 1
+    fi
+
+    # install apt-file if it doesn't already exist
+    command -v apt-file &>/dev/null || sudo apt install -y apt-file
+    apt-file search "$1"
+
+    echo >&2 "apt-file performs substring matching. Consider piping to 'grep -P <regex>'."
+}

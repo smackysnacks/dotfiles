@@ -1,0 +1,12 @@
+set visualbell
+set noerrorbells
+
+set ideajoin
+set surround
+set commentary
+set argtextobj
+set textobj-indent
+set textobj-entire
+set clipboard+=unnamed
+
+nmap gt :action GotoTypeDeclaration<CR>

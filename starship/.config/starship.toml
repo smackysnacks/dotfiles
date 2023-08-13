@@ -1,0 +1,28 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+[username]
+show_always = true
+
+[hostname]
+ssh_only = false
+disabled = false
+style = "yellow"
+format = "[⟪$hostname⟫]($style) "
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+
+[character]
+success_symbol = "[⇒](bold green)"
+error_symbol = "[✗](bold red)"
+vicmd_symbol = "[](bold yellow)"
+
+[[battery.display]]  # "bold red" style when capacity is between 0% and 15%
+threshold = 15
+style = "bold red"
+
+[[battery.display]]  # "bold yellow" style when capacity is between 15% and 40%
+threshold = 40
+style = "bold yellow"
