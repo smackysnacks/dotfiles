@@ -72,27 +72,27 @@ zstyle ':completion:*:*:*:*:processes' list-colors "=(#b) #([0-9]#)*=0=${color[g
 zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -e -o pid,user,tty,cmd'
 ##### END COMPLETION #####
 
-command -v nvim &>/dev/null && alias vim=nvim
-command -v lvim &>/dev/null && alias vim=lvim
-
 alias history='fc -l 1'
 alias c='clear'
 alias itt='img2txt'
 alias tmux='tmux -2'
 alias grep='grep --color=always'
-alias ls='exa'
+alias ls='eza'
 alias cr='cargo run'
-alias l='exa -@lgh'
-alias ll='exa -@lgh'
-alias lh='exa -@lgh'
-alias la='exa -@algh'
-alias lt='exa -@lgh --tree'
+alias l='eza -@lgh'
+alias ll='eza -@lgh'
+alias lh='eza -@lgh'
+alias la='eza -@algh'
+alias lt='eza -@lgh --tree'
 alias time='\time'
 alias weather='curl -s http://wttr.in'
 alias nvim_pluginstallall='nvim +PlugInstall +PlugClean +PlugUpdate +UpdateRemotePlugins'
 alias gs='git status'
 alias gd='git diff'
 alias cat='bat -pp --theme="Visual Studio Dark+"'
+alias zw='zellij -l welcome'
+alias zri='zellij run --in-place --'
+alias j='just'
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -120,20 +120,14 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 alias sudo='sudo '
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-alias todo="vim $HOME/.todo.md"
-[[ -f "$HOME/.todo.md" ]] && cat $HOME/.todo.md
-
 source "$HOME/.zfunctions"
 
+eval "$(~/.local/bin/mise activate zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
-# fnm
-export PATH="/home/mack/.local/share/fnm:$PATH"
-eval "$(fnm env --shell=zsh --use-on-cd)"
-
 export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
+export EDITOR=nvim
+
+alias todo="vim $HOME/.todo.md"
+[[ -f "$HOME/.todo.md" ]] && cat $HOME/.todo.md
