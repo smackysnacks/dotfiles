@@ -3,19 +3,16 @@ return {
   opts = {
     dashboard = {
       preset = {
-        header = (function()
-          local day = os.date("%A %Y/%m/%d")
-          assert(type(day) == "string")
-
-          local formatted_day = string.upper(day)
-          return string.format(
-            [[
-%s
+        header = [[
+ ▄▄    ▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄▄ ▄▄   ▄▄ 
+█  █  █ █       █       █  █ █  █   █  █▄█  █
+█   █▄█ █    ▄▄▄█   ▄   █  █▄█  █   █       █
+█       █   █▄▄▄█  █ █  █       █   █       █
+█  ▄    █    ▄▄▄█  █▄█  █       █   █       █
+█ █ █   █   █▄▄▄█       ██     ██   █ ██▄██ █
+█▄█  █▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█ █▄▄▄█ █▄▄▄█▄█   █▄█
 
 ]],
-            formatted_day
-          )
-        end)(),
       },
     },
   },
