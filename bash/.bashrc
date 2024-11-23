@@ -5,7 +5,7 @@ source "$HOME/.cargo/env"
 eval "$(starship init bash)"
 
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
 
 # User defined functions and aliases
