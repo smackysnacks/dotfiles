@@ -93,6 +93,7 @@ alias cat='bat -pp --theme="Visual Studio Dark+"'
 alias zw='zellij -l welcome'
 alias zri='zellij run --in-place --'
 alias j='just'
+alias lg='lazygit'
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
