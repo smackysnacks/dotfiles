@@ -93,6 +93,8 @@ alias zw='zellij -l welcome'
 alias zri='zellij run --in-place --'
 alias j='just'
 alias lg='lazygit'
+alias define='dict'
+alias n='nvim'
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
